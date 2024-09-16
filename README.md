@@ -33,6 +33,6 @@ AIR-QUALITY-INGESTION-PIPELINE
 
 2. **Clone the Repository:**
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/NembotJules/Air-Quality-Ingestion-Pipeline.git
    cd AIR-QUALITY-INGESTION-PIPELINE
 
