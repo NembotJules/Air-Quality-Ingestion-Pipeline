@@ -1,4 +1,5 @@
 import requests
+import os
 import pandas as pd
 from prefect import flow, task, variables
 from prefect.tasks import task_input_hash
@@ -8,7 +9,7 @@ from prefect_aws import AwsCredentials, S3Bucket
 
 
 # API endpoints and keys 
-WEATHER_API_KEY = variables.get('weather_api_key', default = 'UNKNOWN')
+WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather"
 AIR_QUALITY_API_URL = "http://api.openweathermap.org/data/2.5/air_pollution"
 
