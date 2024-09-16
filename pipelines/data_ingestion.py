@@ -9,8 +9,6 @@ from prefect_aws import AwsCredentials, S3Bucket
 
 
 
-
-
 # API endpoints and keys 
 WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -164,26 +162,7 @@ def city_weather_air_quality_etl():
 
     return combined_data
 
-@task
-def analyze_data(df): 
-    """ Perform basic analysis on the collected data"""
-    print("\nData Analysis: ")
-    print(f"Total cities analyzed:  {len(df)}")
-    print(f"\nAverage temperature: {df['temperature'].mean():.1f}°C")
-    print(f"Average AQI: {df['aqi'].mean():.1f}")
-
-    best_air_quality = df.loc[df['aqi'].idxmin()]
-    worst_air_quality = df.loc[df['aqi'].idxmax()]
-
-    print(f"\nCity with best air quality:  {best_air_quality['city']} (AQI: {best_air_quality['aqi']})")
-    print(f"\nCity with worst air quality:  {worst_air_quality['city']} (AQI: {worst_air_quality['aqi']})")
-
-
-@flow(name="City Data Analysis")
-def city_data_analysis(): 
-    data = city_weather_air_quality_etl()
-    analyze_data(data)
 
 
 if __name__ == "__main__": 
-    city_data_analysis()
+    city_weather_air_quality_etl()
