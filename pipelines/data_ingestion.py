@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import os
 from prefect import flow, task, variables
 from prefect.tasks import task_input_hash
 from datetime import timedelta
@@ -34,7 +33,7 @@ CITIES = [
 ]
 
 
-@task
+@task(cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
 def extract_weather_data(city): 
 
     """Extract weather data from OpenWeatherMap API"""
@@ -74,7 +73,7 @@ weather_data = extract_weather_data(CITIES[8])
 if weather_data: 
     print(extract_weather_data(CITIES[8]))
 
-@task
+@task(cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
 def extract_air_quality_data(city): 
     """ Extract air quality data from OpenWeatherMap API."""
     params = {
