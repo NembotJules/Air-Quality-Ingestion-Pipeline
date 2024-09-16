@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 import os
-from prefect import flow, task
+from prefect import flow, task, variables
 from prefect.tasks import task_input_hash
 from datetime import timedelta
 from pathlib import Path
