@@ -6,7 +6,8 @@ from prefect.tasks import task_input_hash
 from datetime import timedelta
 from pathlib import Path
 from prefect_aws import AwsCredentials, S3Bucket
-
+from prefect_github import GitHubCredentials
+from prefect_github.repository import GitHubRepository
 
 
 # API endpoints and keys 
@@ -31,7 +32,6 @@ CITIES = [
     {"name": "Bertoua", "lat": 4.5833, "lon": 13.6833}, 
 
 ]
-
 
 
 @task(cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
@@ -69,10 +69,10 @@ def extract_weather_data(city):
         return None
     
 
-weather_data = extract_weather_data(CITIES[9])
+weather_data = extract_weather_data(CITIES[8])
 
 if weather_data: 
-    print(extract_weather_data(CITIES[9]))
+    print(extract_weather_data(CITIES[8]))
 
 @task(cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
 def extract_air_quality_data(city): 
@@ -104,10 +104,12 @@ def extract_air_quality_data(city):
         print(f"Failed to fetch data: {response.status_code}, {response.text}")
 
 
-air_quality_data = extract_air_quality_data(CITIES[9])
+air_quality_data = extract_air_quality_data(CITIES[8])
 
 if air_quality_data: 
-    print(extract_air_quality_data(CITIES[9]))
+    print(extract_air_quality_data(CITIES[8]))
+
+
 
 @task   
 def transform_data(weather_data, air_quality_data): 
