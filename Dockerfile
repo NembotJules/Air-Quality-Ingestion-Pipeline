@@ -1,17 +1,17 @@
-# Use Python runtime as a parent image
-FROM python:3.10-slim
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
-
-# Copy the requirements file to the container
-COPY requirements.txt .
-
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the current directory contents into the container at /app
 COPY . .
 
-# Command to run the ETL pipeline
-CMD ["python", "pipelines/data_ingestion.py"]
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose ports for Prefect server and UI
+EXPOSE 8080 4200
+
+# Start the Prefect server
+CMD ["prefect", "server", "start"]
