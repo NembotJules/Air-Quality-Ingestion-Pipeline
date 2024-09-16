@@ -4,3 +4,11 @@ This project implements a data ingestion pipeline that retrieves weather and air
 
 ## Project Structure
 
+AIR-QUALITY-INGESTION-PIPELINE
+│
+├── data/
+├── pipelines/
+│   └── data_ingestion.py
+├── README.md
+├── requirements.txt
+└── Dockerfile
