@@ -17,7 +17,7 @@ pull:
 - prefect.deployments.steps.git_clone:
     repository: https://github.com/NembotJules/Air-Quality-Ingestion-Pipeline.git
     branch: main
-    access_token: null
+    access_token: "{{ prefect.variables.get('github_access_token') }}"
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
