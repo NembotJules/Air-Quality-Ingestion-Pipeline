@@ -5,8 +5,6 @@ from prefect.tasks import task_input_hash
 from datetime import timedelta
 from pathlib import Path
 from prefect_aws import AwsCredentials, S3Bucket
-from prefect_github import GitHubCredentials
-from prefect_github.repository import GitHubRepository
 
 
 # API endpoints and keys 
