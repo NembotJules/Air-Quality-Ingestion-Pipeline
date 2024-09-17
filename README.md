@@ -2,6 +2,8 @@
 
 This project implements a data ingestion pipeline that retrieves weather and air quality data for various cities in Cameroon using the OpenWeatherMap API. The collected data is transformed and saved to an Amazon S3 bucket using Prefect for workflow orchestration.
 
+<img src = "img/pipeline.png">
+
 ## Project Structure
 
 AIR-QUALITY-INGESTION-PIPELINE <br>
