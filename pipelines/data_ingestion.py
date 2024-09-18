@@ -32,9 +32,7 @@ CITIES = [
 ]
 
 
-@task(#cache_key_fn=task_input_hash,
-       #cache_expiration=timedelta(hours=1)
-       )
+@task()
 def extract_weather_data(city): 
 
     """Extract weather data from OpenWeatherMap API"""
@@ -74,9 +72,7 @@ weather_data = extract_weather_data(CITIES[8])
 if weather_data: 
     print(extract_weather_data(CITIES[8]))
 
-@task(#cache_key_fn=task_input_hash, 
-      #cache_expiration=timedelta(hours=1)
-      )
+@task()
 def extract_air_quality_data(city): 
     """ Extract air quality data from OpenWeatherMap API."""
     params = {
