@@ -2,8 +2,8 @@ import requests
 import os
 import pandas as pd
 from prefect import flow, task
-from prefect.tasks import task_input_hash
-from datetime import timedelta
+#from prefect.tasks import task_input_hash
+#from datetime import timedelta
 from pathlib import Path
 from prefect_aws import AwsCredentials, S3Bucket
 
@@ -32,7 +32,9 @@ CITIES = [
 ]
 
 
-@task(cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
+@task(#cache_key_fn=task_input_hash,
+       #cache_expiration=timedelta(hours=1)
+       )
 def extract_weather_data(city): 
 
     """Extract weather data from OpenWeatherMap API"""
@@ -72,7 +74,9 @@ weather_data = extract_weather_data(CITIES[8])
 if weather_data: 
     print(extract_weather_data(CITIES[8]))
 
-@task(cache_key_fn=task_input_hash, cache_expiration=timedelta(hours=1))
+@task(#cache_key_fn=task_input_hash, 
+      #cache_expiration=timedelta(hours=1)
+      )
 def extract_air_quality_data(city): 
     """ Extract air quality data from OpenWeatherMap API."""
     params = {
